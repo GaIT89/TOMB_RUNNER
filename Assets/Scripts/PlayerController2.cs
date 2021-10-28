@@ -11,6 +11,7 @@ public class PlayerController2 : MonoBehaviour
     public float moveSpeed;
     public float jumpVelocity;
 
+    public float roadBoundary = 2.6f;
    
     private int isRunAnimID;
     private int isHitAnimID;
@@ -70,14 +71,16 @@ public class PlayerController2 : MonoBehaviour
     {
         Vector3 playervelocity;
         playervelocity = rb.velocity;
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && (transform.position.x > - roadBoundary))
         {
             rb.velocity = new Vector3 (-moveSpeed, playervelocity.y , playervelocity.z);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) &&(transform.position.x < roadBoundary))
         {
             rb.velocity = new Vector3(moveSpeed, playervelocity.y, playervelocity.z);
         }
+
+       
     }
 
     void Jump()
